@@ -32,8 +32,8 @@ const quizData = [
             "1 and 3 only",
             "1 and 2 only"
         ],
-        correct: 0,
-        explanation: "According to Article 71 and 72 of Circular 80/2022, tax authorities shall base their audit plan on the risk assessment of the taxpayers to select the target for the tax audit (which can be at the ffice of the tax authorities or the taxpayer premises). Only taxpayers with HIGH risk would be elected for a tax audit at the tax authorities' office (which can then be extended to an audit at the axpayer's office if needed).\nĐiều 71. Kiểm tra hồ sơ thuế tại trụ sở cơ quan thuế\n1. Phân loại hồ sơ thuế:\nHồ sơ thuế được phân loại thành 03 mức độ rủi ro: Rủi ro thấp, rủi ro trung bình, rủi ro cao.\n2. Cơ quan thuế đề xuất kế hoạch kiểm tra hồ sơ thuế tại trụ sở cơ quan thuế hoặc xử lý theo quy định tại khoản 3, khoản 4 Điều này đối với hồ sơ có rủi ro cao."
+        correct: 2,
+        explanation: "According to Article 25.1 and Article 26.3 of Circular 80/2022, taxpayers are allowed to request to offset the overpaid tax or claim a refund. Where the taxpayer does not offset or claim the refund within 10 years, the tax authorities shall issue a notice or publicly announce on the website about the overpaid tax in excess of 10 years (and then issue a decision for not refunding the overdue tax overpayment)."
     },
     {
         id: 3,
@@ -50,8 +50,8 @@ const quizData = [
             "1 and 3 only",
             "2 and 3 only"
         ],
-        correct: 0,
-        explanation: ""
+        correct: 1,
+        explanation: "According to Article 71 and 72 of Circular 80/2022, tax authorities shall base their audit plan on the risk assessment of the taxpayers to select the target for the tax audit (which can be at the ffice of the tax authorities or the taxpayer premises). Only taxpayers with HIGH risk would be elected for a tax audit at the tax authorities' office (which can then be extended to an audit at the axpayer's office if needed).\nĐiều 71. Kiểm tra hồ sơ thuế tại trụ sở cơ quan thuế\n1. Phân loại hồ sơ thuế:\nHồ sơ thuế được phân loại thành 03 mức độ rủi ro: Rủi ro thấp, rủi ro trung bình, rủi ro cao.\n2. Cơ quan thuế đề xuất kế hoạch kiểm tra hồ sơ thuế tại trụ sở cơ quan thuế hoặc xử lý theo quy định tại khoản 3, khoản 4 Điều này đối với hồ sơ có rủi ro cao."
     },
     {
         id: 4,
