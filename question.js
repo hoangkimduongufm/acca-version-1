@@ -33,7 +33,7 @@ const quizData = [
             "1 and 2 only"
         ],
         correct: 0,
-        explanation: ""
+        explanation: "According to Article 71 and 72 of Circular 80/2022, tax authorities shall base their audit plan on the risk assessment of the taxpayers to select the target for the tax audit (which can be at the ffice of the tax authorities or the taxpayer premises). Only taxpayers with HIGH risk would be elected for a tax audit at the tax authorities' office (which can then be extended to an audit at the axpayer's office if needed).\nĐiều 71. Kiểm tra hồ sơ thuế tại trụ sở cơ quan thuế\n1. Phân loại hồ sơ thuế:\nHồ sơ thuế được phân loại thành 03 mức độ rủi ro: Rủi ro thấp, rủi ro trung bình, rủi ro cao.\n2. Cơ quan thuế đề xuất kế hoạch kiểm tra hồ sơ thuế tại trụ sở cơ quan thuế hoặc xử lý theo quy định tại khoản 3, khoản 4 Điều này đối với hồ sơ có rủi ro cao."
     },
     {
         id: 3,
