@@ -197,18 +197,25 @@ const quizData = [
         correct: 2,
         explanation: ""
     },
-    {
+   {
         id: 13,
-        type: "standard",
-        question: "TFC Co is a Vietnamese company. Its records showed that by the end of 2024, the following amounts were owed by the company:\n(i) VND10,000 million corporate income tax liabilities\n(ii) VND2,500 million late payment interest\n(iii) VND2,800 million penalty for tax under-declaration\n(iv) VND100 million administrative penalty for violation of tax regulations\n(v) VND800 million land rental to the State Budget\n\nWhat amount should TFC Co pay to be viewed as having 'fulfilled its tax obligations' under the Law on Tax Administration of 2019?",
+        type: "statements_list",
+        question: "TFC Co is a Vietnamese company. Its records showed that by the end of 2024, the following amounts were owed by the company:",
+        statements: [
+            "(i) VND10,000 million corporate income tax liabilities",
+            "(ii) VND2,500 million late payment interest",
+            "(iii) VND2,800 million penalty for tax under-declaration",
+            "(iv) VND100 million administrative penalty for violation of tax regulations",
+            "(v) VND800 million land rental to the State Budget"
+        ],
         options: [
             "VND15,400 million",
             "VND10,000 million",
             "VND16,200 million",
             "VND15,300 million"
         ],
-        correct: 0,
-        explanation: ""
+        correct: 2,
+        explanation: "10,000 + 2,500 + 2,800 + 100 + 800 = 16,200 According to Article 3, points 2 and 12 of the 2020 Law on Tax Administration, a taxpayer is only viewed as having fulfilled their tax obligations when they settle all of those Items (including land rental, defined as another collection to State Budget).\n \n“Điều 3. Giải thích từ ngữ 2. Các khoản thu khác thuộc ngân sách nhà nước do cơ quan quản lý thuế quản lý thu bao gồm: \n a) Phí và lệ phí theo quy định của Luật Phí và lệ phí; \n b) Tiền sử dụng đất nộp ngân sách nhà nước; \n c) Tiền thuê đất, thuê mặt nước; \n d) Tiền cấp quyền khai thác khoáng sản; \n đ) Tiền cấp quyền khai thác tài nguyên nước; \n e) Tiền nộp ngân sách nhà nước từ bán tài sản trên đất, chuyển nhượng quyền sử dụng đất theo quy định của Luật Quản lý, sử dụng tài sản công; \n g) Tiền thu từ xử phạt vi phạm hành chính theo quy định của pháp luật về xử phạt vi phạm hành chính trong lĩnh vực thuế và hải quan; \n h) Tiền chậm nộp và các khoản thu khác theo quy định của pháp luật. \n 12. Hoàn thành nghĩa vụ nộp thuế là việc nộp đủ số tiền thuế phải nộp, số tiền chậm nộp, tiền phạt vi phạm pháp luật về thuế và các khoản thu khác thuộc ngân sách nhà nước. \n Luật quản lý thuế 2020”"
     },
     {
         id: 14,
