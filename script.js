@@ -27,8 +27,18 @@ function renderQuestion() {
             <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Câu hỏi ${currentIndex + 1} / ${quizData.length}</span>
             ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ Chính xác' : '✕ Sai'}</span>` : ''}
         </div>
+        <!-- Hàng 1 / Tiêu đề câu hỏi chính được in đậm -->
         <h2 class="text-lg md:text-xl font-semibold text-slate-800 mb-4 leading-relaxed whitespace-pre-line">${q.question}</h2>
     `;
+
+    // Nếu có danh sách các ý nhỏ (1), (2), (3)... hiển thị với chữ thường và giãn dòng thoáng
+    if (q.statements && q.statements.length > 0) {
+        html += `<div class="mb-6 space-y-3 text-slate-700 text-sm md:text-base leading-relaxed">`;
+        q.statements.forEach(stmt => {
+            html += `<div>${stmt}</div>`;
+        });
+        html += `</div>`;
+    }
 
     // Render bảng dữ liệu đề bài nếu có
     if (q.questionTable) {
@@ -130,17 +140,6 @@ function renderQuestion() {
     document.getElementById('btn-next').disabled = currentIndex === quizData.length - 1;
     document.getElementById('page-indicator').innerText = `Câu ${currentIndex + 1} / ${quizData.length}`;
     document.getElementById('jump-select').value = currentIndex;
-}
-
-function selectAnswer(optionIndex) {
-    if (userAnswers[currentIndex] !== null) return;
-    userAnswers[currentIndex] = optionIndex;
-    
-    if (optionIndex === quizData[currentIndex].correct) {
-        correctCount++;
-    }
-    updateMeta();
-    renderQuestion();
 }
 
 function nextQuestion() {
