@@ -44,15 +44,15 @@ const quizData = [
     },
     {
         id: 3,
-        type: "standard", // Dạng câu hỏi tiêu chuẩn giống Hình 3
-        question: "In 2021, SHC JSC, a joint-stock company registered in Vietnam, invested in shares of VNC JSC, a company listed on the Vietnamese stock market, when the share price was VND 12,000 per share. In July 2025, SHC JSC received dividends from VNC JSC in the form of five million bonus shares, when the market price of one share in VNC JSC was VND 15,200. In November 2025, SHC JSC sold four million bonus shares of VNC JSC for VND 15,000 per share. SHC JSC is subject to the standard rate of corporate tax.\n\nWhat is the total corporate income tax (CIT) liability payable by SHC JSC in the fiscal year 2025 on the receipt of the dividend in July 2025 and the sale of the shares in November 2025?",
+        type: "standard",
+        question: "Which of the following statements are correct in relation to the tax audit process undertaken by the tax authority?\n(1) In cases where the tax authority detects activities of tax evasion by a taxpayer during a tax audit, the tax audit team shall report the case to the police for investigation and notify the head of the tax authority\n(2) In cases of tax evasion, the head of the tax authority can conduct a more thorough tax inspection (3) The tax audit process at the taxpayer's premises is recorded in an electronic logbook ",
         options: [
-            "VND 2,400 million",
-            "VND 15,200 million",
-            "VND 12,000 million",
-            "VND 3,200 million"
+            "1, 2 and 3",
+            "1 and 2 only",
+            "2 and 3 only",
+            "1 and 3 only"
         ],
         correct: 0,
-        explanation: "Cổ tức nhận bằng cổ phiếu thưởng chưa phải nộp thuế TNDN tại thời điểm nhận; khi chuyển nhượng cổ phiếu thưởng sẽ tính thuế theo giá bán và giá vốn quy định."
+        explanation: "None"
     }
 ];
