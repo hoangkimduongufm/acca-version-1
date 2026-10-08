@@ -43,16 +43,21 @@ const quizData = [
         explanation: "Chi tiết tính toán doanh thu tính thuế và chi phí được trừ phù hợp với quy định thuế TNDN hiện hành."
     },
     {
-        id: 3,
-        type: "standard",
-        question: "Which of the following statements are correct in relation to the tax audit process undertaken by the tax authority?\n(1) In cases where the tax authority detects activities of tax evasion by a taxpayer during a tax audit, the tax audit team shall report the case to the police for investigation and notify the head of the tax authority\n(2) In cases of tax evasion, the head of the tax authority can conduct a more thorough tax inspection (3) The tax audit process at the taxpayer's premises is recorded in an electronic logbook ",
+        id: 4,
+        type: "statements_list",
+        question: "Which of the following statements are correct in relation to the tax audit process undertaken by the tax authority?",
+        statements: [
+            "(1) In cases where the tax authority detects activities of tax evasion by a taxpayer during a tax audit, the tax audit team shall report the case to the police for investigation and notify the head of the tax authority",
+            "(2) In cases of tax evasion, the head of the tax authority can conduct a more thorough tax inspection",
+            "(3) The tax audit process at the taxpayer's premises is recorded in an electronic logbook"
+        ],
         options: [
             "1, 2 and 3",
             "1 and 2 only",
             "2 and 3 only",
             "1 and 3 only"
         ],
-        correct: 0,
-        explanation: "None"
+        correct: 3, // Tương ứng với D
+        explanation: "Giải thích chi tiết về quy trình thanh tra thuế và các trường hợp chuyển cơ quan công an hoặc kiểm tra kỹ hơn..."
     }
 ];
