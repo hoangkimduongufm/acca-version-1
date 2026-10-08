@@ -43,7 +43,7 @@ const quizData = [
         explanation: "Chi tiết tính toán doanh thu tính thuế và chi phí được trừ phù hợp với quy định thuế TNDN hiện hành."
     },
     {
-        id: 4,
+        id: 3,
         type: "statements_list",
         question: "Which of the following statements are correct in relation to the tax audit process undertaken by the tax authority?",
         statements: [
