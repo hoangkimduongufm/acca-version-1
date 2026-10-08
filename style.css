@@ -20,3 +20,6 @@ h2 {
 .animate-scaleIn {
     animation: scaleIn 0.2s ease-out forwards;
 }
+.explanation-box {
+    white-space: pre-line;
+}
