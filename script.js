@@ -142,6 +142,18 @@ function renderQuestion() {
     document.getElementById('jump-select').value = currentIndex;
 }
 
+// Hàm xử lý khi người dùng click chọn đáp án
+function selectAnswer(optionIndex) {
+    if (userAnswers[currentIndex] !== null) return;
+    userAnswers[currentIndex] = optionIndex;
+    
+    if (optionIndex === quizData[currentIndex].correct) {
+        correctCount++;
+    }
+    updateMeta();
+    renderQuestion();
+}
+
 function nextQuestion() {
     if (currentIndex < quizData.length - 1) {
         currentIndex++;
