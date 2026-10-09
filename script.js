@@ -129,7 +129,8 @@ function renderQuestion() {
                 <div class="font-semibold mb-1 flex items-center gap-2">
                     <span>${isCorrect ? '🎉 Great choice, you got it right!' : '💡 The correct answer is: ' + optionLetters[q.correct] + '. ' + q.options[q.correct]}</span>
                 </div>
-                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">Detailed breakdown:</strong> ${q.explanation}</p>
+                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">Detailed breakdown: 
+                </strong> ${q.explanation}</p>
             </div>
         `;
     }
@@ -183,7 +184,7 @@ function submitQuiz() {
     const answeredCount = userAnswers.filter(a => a !== null).length;
     const modal = document.getElementById('results-modal');
     const resultText = document.getElementById('result-text');
-    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} Number</strong><br>Tỷ lệ chính xác: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
+    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} Number</strong><br>Accuracy rate: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
     modal.classList.remove('hidden');
 }
 
