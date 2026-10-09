@@ -56,7 +56,7 @@ const quizData = [
     {
         id: 4,
         type: "standard",
-        question: "LPI Co is a Vietnamese company. In the year 2024, when reviewing the tax returns of previous years, the company identified that its corporate income tax return in the year ended 31 December 2023 underdeclared income.\n\nThe company declared and paid tax on the under declaration in full on 1 November 2024.\n\nWhat is the basis period for calculating the late payment interest of LPI Co in relation to the scenario outlined, according to Circular 80/2021?",
+        question: "LPI Co is a Vietnamese company. In the year 2024, when reviewing the tax returns of previous years, the company identified that its corporate income tax return in the year ended 31 December 2023 underdeclared income.\nThe company declared and paid tax on the under declaration in full on 1 November 2024.\n<b>What is the basis period for calculating the late payment interest of LPI Co in relation to the scenario outlined, according to Circular 80/2021?</b>",
         options: [
             "From 1 April to 1 November 2024",
             "From 1 April to 31 October 2024",
