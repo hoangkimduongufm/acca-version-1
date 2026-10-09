@@ -11,7 +11,7 @@ function initQuiz() {
         opt.text = `Câu ${idx + 1}`;
         select.appendChild(opt);
     });
-    document.getElementById('meta-total').innerText = `Tổng số câu: ${quizData.length}`;
+    document.getElementById('meta-total').innerText = `Total questions: ${quizData.length}`;
     renderQuestion();
     updateMeta();
 }
@@ -24,7 +24,7 @@ function renderQuestion() {
 
     let html = `
         <div class="mb-4 flex items-center justify-between">
-            <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Câu hỏi ${currentIndex + 1} / ${quizData.length}</span>
+            <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Question ${currentIndex + 1} / ${quizData.length}</span>
             ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ Chính xác' : '✕ Sai'}</span>` : ''}
         </div>
         <!-- Hàng 1 / Tiêu đề câu hỏi chính được in đậm -->
@@ -127,9 +127,9 @@ function renderQuestion() {
         html += `
             <div class="mt-6 p-4 rounded-xl ${isCorrect ? 'bg-emerald-50 border border-emerald-200 text-emerald-900' : 'bg-rose-50 border border-rose-200 text-rose-900'}">
                 <div class="font-semibold mb-1 flex items-center gap-2">
-                    <span>${isCorrect ? '🎉 Tuyệt vời, bạn đã chọn đúng!' : '💡 Đáp án chính xác là: ' + optionLetters[q.correct] + '. ' + q.options[q.correct]}</span>
+                    <span>${isCorrect ? '🎉 Great choice, you got it right!' : '💡 The correct answer is: ' + optionLetters[q.correct] + '. ' + q.options[q.correct]}</span>
                 </div>
-                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">Giải thích chi tiết:</strong> ${q.explanation}</p>
+                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">Detailed breakdown:</strong> ${q.explanation}</p>
             </div>
         `;
     }
@@ -175,15 +175,15 @@ function jumpToQuestion(index) {
 
 function updateMeta() {
     const answeredCount = userAnswers.filter(a => a !== null).length;
-    document.getElementById('meta-answered').innerText = `Đã trả lời: ${answeredCount}/${quizData.length}`;
-    document.getElementById('meta-score').innerText = `Số câu đúng: ${correctCount}`;
+    document.getElementById('meta-answered').innerText = `Completed: ${answeredCount}/${quizData.length}`;
+    document.getElementById('meta-score').innerText = `Score: ${correctCount}`;
 }
 
 function submitQuiz() {
     const answeredCount = userAnswers.filter(a => a !== null).length;
     const modal = document.getElementById('results-modal');
     const resultText = document.getElementById('result-text');
-    resultText.innerHTML = `Bạn đã trả lời: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> câu.<br>Số câu đúng: <strong class="text-emerald-600">${correctCount} câu</strong><br>Tỷ lệ chính xác: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
+    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} câu</strong><br>Tỷ lệ chính xác: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
     modal.classList.remove('hidden');
 }
 
