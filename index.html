@@ -16,29 +16,29 @@
         
         <!-- Header Section -->
         <div class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-6 md:p-8">
-            <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Trắc nghiệm Ôn tập Chuyên sâu</h1>
-            <p class="text-indigo-100 mt-2 text-sm md:text-base">Hệ thống hỗ trợ câu hỏi văn bản, bảng dữ liệu và bảng Option linh hoạt.</p>
+            <h1 class="text-2xl md:text-3xl font-bold tracking-tight">DISCLAIMER FOR F6 PRACTICE QUESTIONS</h1>
+            <p class="text-indigo-100 mt-2 text-sm md:text-base">This F6 practice questions has been created by SAPP to assist candidates preparing for the F6 – Taxation in Vietnam exam.</p>
             <div id="quiz-meta" class="flex flex-wrap gap-4 mt-4 text-xs md:text-sm font-medium bg-indigo-700/50 p-3 rounded-xl backdrop-blur-sm">
-                <span id="meta-total">Tổng số câu: 200</span>
-                <span id="meta-answered">Đã trả lời: 0/200</span>
-                <span id="meta-score">Số câu đúng: 0</span>
+                <span id="meta-total">Questions: 273</span>
+                <span id="meta-answered">Anwers: 0/273</span>
+                <span id="meta-score">Correct: 0</span>
             </div>
         </div>
 
         <!-- Toolbar / Navigation bar -->
         <div class="bg-slate-100 p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-2">
-                <label for="jump-select" class="text-sm font-semibold text-slate-600">Đến câu:</label>
+                <label for="jump-select" class="text-sm font-semibold text-slate-600">Next Questions:</label>
                 <select id="jump-select" onchange="jumpToQuestion(this.value)" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <!-- Options populated via JS -->
                 </select>
             </div>
             <div class="flex items-center gap-2">
                 <button onclick="submitQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm">
-                    Xem tổng kết & Kết quả
+                    View Summary & Results
                 </button>
                 <button onclick="resetQuiz()" class="bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm">
-                    Làm lại từ đầu
+                    Start over
                 </button>
             </div>
         </div>
@@ -51,11 +51,11 @@
         <!-- Footer Pagination Controls -->
         <div class="bg-slate-50 p-4 border-t border-slate-200 flex items-center justify-between">
             <button id="btn-prev" onclick="prevQuestion()" class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-5 py-2 rounded-xl transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">
-                ← Câu trước
+                ← Previous sentence
             </button>
-            <span id="page-indicator" class="text-sm font-medium text-slate-600">Câu 1 / 1</span>
+            <span id="page-indicator" class="text-sm font-medium text-slate-600">Sentence 1 / 1</span>
             <button id="btn-next" onclick="nextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-xl transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">
-                Câu tiếp →
+                Next sentence →
             </button>
         </div>
     </div>
@@ -66,14 +66,14 @@
             <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                 🏆
             </div>
-            <h2 class="text-2xl font-bold text-slate-800">Tổng kết quá trình ôn tập</h2>
+            <h2 class="text-2xl font-bold text-slate-800">Review of the Revision Process</h2>
             <p id="result-text" class="text-slate-600 mt-2 text-lg font-medium"></p>
             <div class="mt-6 flex flex-col gap-3">
                 <button onclick="closeResults()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition shadow-sm">
-                    Tiếp tục ôn tập
+                    Continuing the Revision Session
                 </button>
                 <button onclick="resetQuiz(); closeResults();" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-3 rounded-xl transition">
-                    Làm bài mới từ đầu
+                    Start a new exercise from scratch
                 </button>
             </div>
         </div>
