@@ -3,6 +3,8 @@ body {
 }
 
 h2 {
+    font-weight: normal; /* Không in đậm */
+    text-transform: lowercase; /* Chữ thường */
     white-space: pre-line;
 }
 
