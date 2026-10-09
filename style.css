@@ -5,8 +5,7 @@ body {
 h2 {
     font-weight: normal; /* Không in đậm */
     text-transform: none; /* Giữ nguyên file gốc */
-    white-space: pre-line;
-    line-height: 1.6;
+    white-space: pre-line;    
 }
 
 @keyframes scaleIn {
@@ -24,6 +23,5 @@ h2 {
     animation: scaleIn 0.2s ease-out forwards;
 }
 .explanation {
-    white-space: pre-line;
-    line-height: 1.6;
+    white-space: pre-line;    
 }
