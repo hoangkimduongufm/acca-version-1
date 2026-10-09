@@ -28,7 +28,7 @@ function renderQuestion() {
             ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ Chính xác' : '✕ Sai'}</span>` : ''}
         </div>
         <!-- Hàng 1 / Tiêu đề câu hỏi chính được in đậm -->
-        <h2 class="text-lg md:text-xl font-semibold text-slate-800 mb-4 leading-relaxed whitespace-pre-line">${q.question}</h2>
+        <h2 class="text-lg md:text-xl font-normal text-slate-800 mb-4 leading-relaxed">${q.question}</h2>
     `;
 
     // Nếu có danh sách các ý nhỏ (1), (2), (3)... hiển thị với chữ thường và giãn dòng thoáng
