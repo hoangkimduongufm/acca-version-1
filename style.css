@@ -6,6 +6,7 @@ h2 {
     font-weight: normal; /* Không in đậm */
     text-transform: none; /* Giữ nguyên file gốc */
     white-space: pre-line;
+    line-height: 1.6;
 }
 
 @keyframes scaleIn {
@@ -24,4 +25,5 @@ h2 {
 }
 .explanation {
     white-space: pre-line;
+    line-height: 1.6;
 }
