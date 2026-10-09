@@ -8,7 +8,7 @@ function initQuiz() {
     quizData.forEach((q, idx) => {
         const opt = document.createElement('option');
         opt.value = idx;
-        opt.text = `Câu ${idx + 1}`;
+        opt.text = `Number ${idx + 1}`;
         select.appendChild(opt);
     });
     document.getElementById('meta-total').innerText = `Total questions: ${quizData.length}`;
@@ -138,7 +138,7 @@ function renderQuestion() {
 
     document.getElementById('btn-prev').disabled = currentIndex === 0;
     document.getElementById('btn-next').disabled = currentIndex === quizData.length - 1;
-    document.getElementById('page-indicator').innerText = `Câu ${currentIndex + 1} / ${quizData.length}`;
+    document.getElementById('page-indicator').innerText = `Number ${currentIndex + 1} / ${quizData.length}`;
     document.getElementById('jump-select').value = currentIndex;
 }
 
@@ -183,7 +183,7 @@ function submitQuiz() {
     const answeredCount = userAnswers.filter(a => a !== null).length;
     const modal = document.getElementById('results-modal');
     const resultText = document.getElementById('result-text');
-    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} câu</strong><br>Tỷ lệ chính xác: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
+    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} Number</strong><br>Tỷ lệ chính xác: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
     modal.classList.remove('hidden');
 }
 
