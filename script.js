@@ -201,7 +201,8 @@ function renderQuestion() {
                 <div class="font-semibold mb-1 flex items-center gap-2">
                     <span>${isCorrect ? '🎉 Great choice, you got it right!' : '💡 The correct answer is: ' + optionLetters[q.correct] + '. ' + q.options[q.correct]}</span>
                 </div>
-                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">📝 Detailed breakdown: </strong> ${q.explanation}</p>
+                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">📝 Detailed breakdown:
+                </strong> ${q.explanation}</p>
             </div>
         `;
     }
