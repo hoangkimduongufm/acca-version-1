@@ -2157,7 +2157,7 @@ const quizData = [
     },
     {
         id: 140,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "<b>Which of the following statements are correct regarding the process of determining an arm's length price between related parties?</b>",
         statements: [
@@ -2176,7 +2176,7 @@ const quizData = [
     },
     {
         id: 141,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "<b>Which of the following are source(s) of official databases used by the Vietnamese tax authorities for determining arm's length prices on related party transactions according to Decree 132/2020?</b>",
         statements: [
@@ -2195,7 +2195,7 @@ const quizData = [
     },
     {
         id: 142,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "<b>Which of the following statement(s) is / are correct about the taxation principles and administration on related party transactions according to Decree 132/2020?</b>",
         statements: [
@@ -2214,7 +2214,7 @@ const quizData = [
     },
     {
         id: 143,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing ",
         type: "statements_list",
         question: "<b>Which of the following scenarios would make two companies ‘related parties' under Decree 132/2020 with regards to tax administration on enterprises having related party transactions?</b>",
         statements: [
@@ -2233,7 +2233,7 @@ const quizData = [
     },
     {
         id: 144,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "VTKC Co, based in Vietnam, is a subsidiary of KC Co, a company headquartered in India. In 2023, VTKC entered into the following transactions:",
         statements: [
@@ -2253,7 +2253,7 @@ const quizData = [
     },
     {
         id: 145,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "VTKC Co, based in Vietnam, is a subsidiary of KC Co, a company headquartered in India. In 2023, VTKC entered into the following transactions:",
         statements: [
@@ -2273,7 +2273,7 @@ const quizData = [
     },
     {
         id: 146,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "option_table",
         question: "According to Decree 132/2020, ‘Standard arm's length range' is a set of values ranging from a lower percentile to an upper percentile.\n<b>What are the lower and upper percentiles for ‘Standard arm's length range' as stipulated in Decree 132/2020?</b>",
         optionTable: {
@@ -2291,7 +2291,7 @@ const quizData = [
     },
     {
         id: 147,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "IPV A, B, C and D are four companies incorporated in Vietnam. A holds 80% and 40% of the share capital of B and C respectively. C holds 80% of D.\n<b>Which of the following statements is/are CORRECT regarding the relationship between the four companies?</b>",
         statements: [
@@ -2311,7 +2311,7 @@ const quizData = [
     },
     {
         id: 148,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "option_table",
         question: "The tax authorities in Vietnam review related party transactions performed by taxpayers based on certain fundamental principles.\n<b>Which of the following combinations of fundamental principles should be considered by the tax authorities when assessing a taxpayer's transactions with related parties, according to Decree 132/2020?</b>",
         optionTable: {
@@ -2329,7 +2329,7 @@ const quizData = [
     },
     {
         id: 149,
-        section: " Part Transfer pricing ",
+        section: "Part Transfer pricing",
         type: "statements_list",
         question: "<b>Which of the following transactions between a parent company and a subsidiary fall within the scope of related party transactions under Decree 132/2020?</b>",
         statements: [
