@@ -1,37 +1,74 @@
+let currentQuizData = []; // Danh sách câu hỏi hiện tại (có thể xáo trộn hoặc giữ nguyên)
 let currentIndex = 0;
-let userAnswers = new Array(quizData.length).fill(null);
+let userAnswers = [];
 let correctCount = 0;
 
+// Thuật toán Fisher-Yates shuffle để xáo trộn ngẫu nhiên mảng
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Khởi tạo ban đầu (Mặc định khi load trang lần đầu sẽ xáo trộn ngẫu nhiên)
 function initQuiz() {
+    if (typeof quizData === 'undefined') {
+        console.error("Không tìm thấy biến quizData. Vui lòng kiểm tra lại file question.js");
+        return;
+    }
+    currentQuizData = shuffleArray(quizData);
+    resetStateAndRender();
+}
+
+// Thiết lập lại trạng thái chung và render giao diện
+function resetStateAndRender() {
+    userAnswers = new Array(currentQuizData.length).fill(null);
+    currentIndex = 0;
+    correctCount = 0;
+
     const select = document.getElementById('jump-select');
     select.innerHTML = '';
-    quizData.forEach((q, idx) => {
+    currentQuizData.forEach((q, idx) => {
         const opt = document.createElement('option');
         opt.value = idx;
         opt.text = `Number ${idx + 1}`;
         select.appendChild(opt);
     });
-    document.getElementById('meta-total').innerText = `Total questions: ${quizData.length}`;
+    
+    document.getElementById('meta-total').innerText = `Total questions: ${currentQuizData.length}`;
     renderQuestion();
     updateMeta();
 }
 
+// 1. Tính năng: Làm lại từ đầu theo đúng thứ tự gốc trong questions.js
+function resetQuiz() {
+    currentQuizData = [...quizData];
+    resetStateAndRender();
+}
+
+// 2. Tính năng: Làm lại với các câu hỏi ngẫu nhiên được xáo trộn thứ tự
+function resetAndShuffleQuiz() {
+    currentQuizData = shuffleArray(quizData);
+    resetStateAndRender();
+}
+
 function renderQuestion() {
     const container = document.getElementById('question-container');
-    const q = quizData[currentIndex];
+    const q = currentQuizData[currentIndex];
     const selectedOpt = userAnswers[currentIndex];
     const hasAnswered = selectedOpt !== null;
 
     let html = `
         <div class="mb-4 flex items-center justify-between">
-            <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Question ${currentIndex + 1} / ${quizData.length}</span>
+            <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Question ${currentIndex + 1} / ${currentQuizData.length}</span>
             ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ Chính xác' : '✕ Sai'}</span>` : ''}
         </div>
-        <!-- Hàng 1 / Tiêu đề câu hỏi chính được in đậm -->
         <h2 class="text-lg md:text-xl font-normal text-slate-800 mb-4 leading-relaxed">${q.question}</h2>
     `;
 
-    // Nếu có danh sách các ý nhỏ (1), (2), (3)... hiển thị với chữ thường và giãn dòng thoáng
     if (q.statements && q.statements.length > 0) {
         html += `<div class="mb-6 space-y-3 text-slate-700 text-sm md:text-base leading-relaxed">`;
         q.statements.forEach(stmt => {
@@ -40,7 +77,6 @@ function renderQuestion() {
         html += `</div>`;
     }
 
-    // Render bảng dữ liệu đề bài nếu có
     if (q.questionTable) {
         html += `<div class="mb-4 overflow-x-auto"><table class="min-w-full border border-slate-300 text-left text-sm">`;
         html += `<thead class="bg-slate-100 font-semibold text-slate-700"><tr>`;
@@ -62,7 +98,6 @@ function renderQuestion() {
         html += `<p class="text-base font-semibold text-slate-800 mb-4">${q.subQuestion}</p>`;
     }
 
-    // Render bảng danh sách các Option nếu có
     if (q.optionTable) {
         html += `<div class="mb-6 overflow-x-auto"><table class="min-w-full border border-slate-300 text-center text-sm">`;
         html += `<thead class="bg-slate-100 font-bold text-slate-700"><tr>`;
@@ -81,7 +116,6 @@ function renderQuestion() {
         html += `</tbody></table></div>`;
     }
 
-    // Render các đáp án lựa chọn A, B, C, D
     html += `<div class="space-y-3">`;
     const optionLetters = ['A', 'B', 'C', 'D'];
 
@@ -129,8 +163,7 @@ function renderQuestion() {
                 <div class="font-semibold mb-1 flex items-center gap-2">
                     <span>${isCorrect ? '🎉 Great choice, you got it right!' : '💡 The correct answer is: ' + optionLetters[q.correct] + '. ' + q.options[q.correct]}</span>
                 </div>
-                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">📝 Detailed breakdown: 
-                </strong> ${q.explanation}</p>
+                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">📝 Detailed breakdown: </strong> ${q.explanation}</p>
             </div>
         `;
     }
@@ -138,17 +171,16 @@ function renderQuestion() {
     container.innerHTML = html;
 
     document.getElementById('btn-prev').disabled = currentIndex === 0;
-    document.getElementById('btn-next').disabled = currentIndex === quizData.length - 1;
-    document.getElementById('page-indicator').innerText = `Number ${currentIndex + 1} / ${quizData.length}`;
+    document.getElementById('btn-next').disabled = currentIndex === currentQuizData.length - 1;
+    document.getElementById('page-indicator').innerText = `Number ${currentIndex + 1} / ${currentQuizData.length}`;
     document.getElementById('jump-select').value = currentIndex;
 }
 
-// Hàm xử lý khi người dùng click chọn đáp án
 function selectAnswer(optionIndex) {
     if (userAnswers[currentIndex] !== null) return;
     userAnswers[currentIndex] = optionIndex;
     
-    if (optionIndex === quizData[currentIndex].correct) {
+    if (optionIndex === currentQuizData[currentIndex].correct) {
         correctCount++;
     }
     updateMeta();
@@ -156,7 +188,7 @@ function selectAnswer(optionIndex) {
 }
 
 function nextQuestion() {
-    if (currentIndex < quizData.length - 1) {
+    if (currentIndex < currentQuizData.length - 1) {
         currentIndex++;
         renderQuestion();
     }
@@ -176,7 +208,7 @@ function jumpToQuestion(index) {
 
 function updateMeta() {
     const answeredCount = userAnswers.filter(a => a !== null).length;
-    document.getElementById('meta-answered').innerText = `Completed: ${answeredCount}/${quizData.length}`;
+    document.getElementById('meta-answered').innerText = `Completed: ${answeredCount}/${currentQuizData.length}`;
     document.getElementById('meta-score').innerText = `Score: ${correctCount}`;
 }
 
@@ -184,20 +216,12 @@ function submitQuiz() {
     const answeredCount = userAnswers.filter(a => a !== null).length;
     const modal = document.getElementById('results-modal');
     const resultText = document.getElementById('result-text');
-    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${quizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} Number</strong><br>Accuracy rate: <strong class="text-blue-600">${((correctCount/quizData.length)*100).toFixed(1)}%</strong>`;
+    resultText.innerHTML = `You answered: <strong class="text-indigo-600">${answeredCount} / ${currentQuizData.length}</strong> Question.<br>Correct answers: <strong class="text-emerald-600">${correctCount} Number</strong><br>Accuracy rate: <strong class="text-blue-600">${((correctCount/currentQuizData.length)*100).toFixed(1)}%</strong>`;
     modal.classList.remove('hidden');
 }
 
 function closeResults() {
     document.getElementById('results-modal').classList.add('hidden');
-}
-
-function resetQuiz() {
-    userAnswers = new Array(quizData.length).fill(null);
-    currentIndex = 0;
-    correctCount = 0;
-    updateMeta();
-    renderQuestion();
 }
 
 window.onload = function() {
