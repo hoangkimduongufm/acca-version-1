@@ -55,7 +55,7 @@ function resetStateAndRender() {
                 <p class="text-lg font-medium">Không tìm thấy câu hỏi nào trong ${currentSection}.</p>
             </div>
         `;
-        document.getElementById('meta-total').innerText = `Total questions: 0`;
+        document.getElementById('meta-total').innerText = `Total: 0`;
         document.getElementById('meta-answered').innerText = `Completed: 0/0`;
         document.getElementById('meta-score').innerText = `Score: 0`;
         document.getElementById('page-indicator').innerText = `Sentence 0 / 0`;
