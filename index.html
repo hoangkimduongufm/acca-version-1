@@ -19,7 +19,7 @@
             <h1 class="text-2xl md:text-3xl font-bold tracking-tight">DISCLAIMER FOR F6 PRACTICE QUESTIONS</h1>
             <p class="text-indigo-100 mt-2 text-sm md:text-base">This F6 practice questions has been created by SAPP to assist candidates preparing for the F6 – Taxation in Vietnam exam.</p>
             <div id="quiz-meta" class="flex flex-wrap gap-4 mt-4 text-xs md:text-sm font-medium bg-indigo-700/50 p-3 rounded-xl backdrop-blur-sm">
-                <span id="meta-total">Total questions: 0</span>
+                <span id="meta-total">Total: 0</span>
                 <span id="meta-answered">Completed: 0/0</span>
                 <span id="meta-score">Score: 0</span>
             </div>
@@ -52,13 +52,13 @@
 
     <div class="flex items-center gap-2 flex-wrap">
         <button onclick="submitQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm">
-            View Summary & Results
+            View Summary
         </button>
         <button onclick="resetQuiz()" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm" title="Làm lại theo thứ tự gốc của section">
-            Start over (In order)
+            Start over
         </button>
         <button onclick="resetAndShuffleQuiz()" class="bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm" title="Random trong section hiện tại">
-            Random Question
+            Random
         </button>
     </div>
 </div>
@@ -71,11 +71,11 @@
         <!-- Footer Pagination Controls -->
         <div class="bg-slate-50 p-4 border-t border-slate-200 flex items-center justify-between">
             <button id="btn-prev" onclick="prevQuestion()" class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-5 py-2 rounded-xl transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">
-                ← Previous sentence
+                ← Previous
             </button>
             <span id="page-indicator" class="text-sm font-medium text-slate-600">Sentence 1 / 1</span>
             <button id="btn-next" onclick="nextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-xl transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">
-                Next sentence →
+                Next →
             </button>
         </div>
     </div>
