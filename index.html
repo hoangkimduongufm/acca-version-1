@@ -26,27 +26,42 @@
         </div>
 
         <!-- Toolbar / Navigation bar -->
-        <div class="bg-slate-100 p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <label for="jump-select" class="text-sm font-semibold text-slate-600">Jump to Question:</label>
-                <select id="jump-select" onchange="jumpToQuestion(this.value)" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <!-- Options populated via JS -->
-                </select>
-            </div>
-            <div class="flex items-center gap-2 flex-wrap">
-                <button onclick="submitQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm">
-                    View Summary & Results
-                </button>
-                <!-- Nút 1: Làm lại theo thứ tự gốc trong questions.js -->
-                <button onclick="resetQuiz()" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm" title="Làm lại từ đầu theo đúng thứ tự gốc">
-                    Start over
-                </button>
-                <!-- Nút 2: Làm lại với câu hỏi xáo trộn ngẫu nhiên -->
-                <button onclick="resetAndShuffleQuiz()" class="bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm" title="Làm lại từ đầu với thứ tự câu hỏi ngẫu nhiên">
-                    Random Question
-                </button>
-            </div>
+<div class="bg-slate-100 p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-4 flex-wrap">
+        <!-- Bộ lọc Section mới -->
+        <div class="flex items-center gap-2">
+            <label for="section-select" class="text-sm font-semibold text-slate-600">Section:</label>
+            <select id="section-select" onchange="changeSection(this.value)" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="ALL">All Sections</option>
+                <option value="Part A">Part A</option>
+                <option value="Part B">Part B</option>
+                <option value="Part C">Part C</option>
+                <option value="Part Transfer pricing">Part Transfer pricing</option>
+                <option value="Part D">Part D</option>
+                <option value="Part E">Part E</option>
+            </select>
         </div>
+
+        <div class="flex items-center gap-2">
+            <label for="jump-select" class="text-sm font-semibold text-slate-600">Jump to:</label>
+            <select id="jump-select" onchange="jumpToQuestion(this.value)" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <!-- Options populated via JS -->
+            </select>
+        </div>
+    </div>
+
+    <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="submitQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm">
+            View Summary & Results
+        </button>
+        <button onclick="resetQuiz()" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm" title="Làm lại theo thứ tự gốc của section">
+            Start over (In order)
+        </button>
+        <button onclick="resetAndShuffleQuiz()" class="bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition shadow-sm" title="Random trong section hiện tại">
+            Random Question
+        </button>
+    </div>
+</div>
 
         <!-- Quiz Main Content Area -->
         <div class="p-6 md:p-8 min-h-[400px]" id="question-container">
