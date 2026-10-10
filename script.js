@@ -102,7 +102,7 @@ function renderQuestion() {
                 <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Question ${currentIndex + 1} / ${currentQuizData.length}</span>
                 ${q.section ? `<span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full">${q.section}</span>` : ''}
             </div>
-            ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ Chính xác' : '✕ Sai'}</span>` : ''}
+            ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ True' : '✕ False'}</span>` : ''}
         </div>
         <h2 class="text-lg md:text-xl font-normal text-slate-800 mb-4 leading-relaxed">${q.question}</h2>
     `;
