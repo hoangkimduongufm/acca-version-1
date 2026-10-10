@@ -1,9 +1,11 @@
-let currentQuizData = []; // Danh sách câu hỏi hiện tại (có thể xáo trộn hoặc giữ nguyên)
+let currentSection = 'ALL'; // Trạng thái section đang chọn
+let baseQuizData = [];      // Danh sách gốc sau khi lọc theo section (giữ nguyên thứ tự)
+let currentQuizData = [];   // Danh sách đang làm (có thể giữ nguyên hoặc random)
 let currentIndex = 0;
 let userAnswers = [];
 let correctCount = 0;
 
-// Thuật toán Fisher-Yates shuffle để xáo trộn ngẫu nhiên mảng
+// Thuật toán Fisher-Yates shuffle
 function shuffleArray(array) {
     const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -13,17 +15,32 @@ function shuffleArray(array) {
     return arr;
 }
 
-// Khởi tạo ban đầu (Mặc định khi load trang lần đầu sẽ xáo trộn ngẫu nhiên)
+// Khởi tạo quiz khi load trang hoặc khi đổi section (GIỮ NGUYÊN THỨ TỰ GỐC)
 function initQuiz() {
     if (typeof quizData === 'undefined') {
-        console.error("Không tìm thấy biến quizData. Vui lòng kiểm tra lại file question.js");
+        console.error("Không tìm thấy biến quizData.");
         return;
     }
-    currentQuizData = shuffleArray(quizData);
+
+    // Lọc theo section
+    if (currentSection === 'ALL') {
+        baseQuizData = [...quizData];
+    } else {
+        baseQuizData = quizData.filter(q => q.section === currentSection);
+    }
+
+    // Mặc định load lần đầu hoặc F5 sẽ giữ nguyên thứ tự gốc, không random
+    currentQuizData = [...baseQuizData];
     resetStateAndRender();
 }
 
-// Thiết lập lại trạng thái chung và render giao diện
+// Thay đổi section từ dropdown
+function changeSection(sectionValue) {
+    currentSection = sectionValue;
+    initQuiz();
+}
+
+// Thiết lập trạng thái và render lại giao diện
 function resetStateAndRender() {
     userAnswers = new Array(currentQuizData.length).fill(null);
     currentIndex = 0;
@@ -31,6 +48,22 @@ function resetStateAndRender() {
 
     const select = document.getElementById('jump-select');
     select.innerHTML = '';
+
+    if (currentQuizData.length === 0) {
+        document.getElementById('question-container').innerHTML = `
+            <div class="text-center py-12 text-slate-500">
+                <p class="text-lg font-medium">Không tìm thấy câu hỏi nào trong ${currentSection}.</p>
+            </div>
+        `;
+        document.getElementById('meta-total').innerText = `Total questions: 0`;
+        document.getElementById('meta-answered').innerText = `Completed: 0/0`;
+        document.getElementById('meta-score').innerText = `Score: 0`;
+        document.getElementById('page-indicator').innerText = `Sentence 0 / 0`;
+        document.getElementById('btn-prev').disabled = true;
+        document.getElementById('btn-next').disabled = true;
+        return;
+    }
+
     currentQuizData.forEach((q, idx) => {
         const opt = document.createElement('option');
         opt.value = idx;
@@ -43,19 +76,21 @@ function resetStateAndRender() {
     updateMeta();
 }
 
-// 1. Tính năng: Làm lại từ đầu theo đúng thứ tự gốc trong questions.js
+// 1. Làm lại theo thứ tự gốc trong section hiện tại
 function resetQuiz() {
-    currentQuizData = [...quizData];
+    currentQuizData = [...baseQuizData];
     resetStateAndRender();
 }
 
-// 2. Tính năng: Làm lại với các câu hỏi ngẫu nhiên được xáo trộn thứ tự
+// 2. Làm lại với câu hỏi xáo trộn ngẫu nhiên (CHỈ CHẠY KHI BẤM NÚT RANDOM)
 function resetAndShuffleQuiz() {
-    currentQuizData = shuffleArray(quizData);
+    currentQuizData = shuffleArray(baseQuizData);
     resetStateAndRender();
 }
 
 function renderQuestion() {
+    if (currentQuizData.length === 0) return;
+
     const container = document.getElementById('question-container');
     const q = currentQuizData[currentIndex];
     const selectedOpt = userAnswers[currentIndex];
@@ -63,7 +98,10 @@ function renderQuestion() {
 
     let html = `
         <div class="mb-4 flex items-center justify-between">
-            <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Question ${currentIndex + 1} / ${currentQuizData.length}</span>
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full uppercase tracking-wider">Question ${currentIndex + 1} / ${currentQuizData.length}</span>
+                ${q.section ? `<span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full">${q.section}</span>` : ''}
+            </div>
             ${hasAnswered ? `<span class="text-xs font-bold px-3 py-1 rounded-full ${selectedOpt === q.correct ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${selectedOpt === q.correct ? '✓ Chính xác' : '✕ Sai'}</span>` : ''}
         </div>
         <h2 class="text-lg md:text-xl font-normal text-slate-800 mb-4 leading-relaxed">${q.question}</h2>
