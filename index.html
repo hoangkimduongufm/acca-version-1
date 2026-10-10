@@ -82,7 +82,12 @@
 
     <!-- Results Modal / View -->
     <div id="results-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 md:p-8 text-center animate-scaleIn">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 md:p-8 text-center relative animate-scaleIn">
+            <!-- Nút Close (X) góc trên bên phải -->
+            <button onclick="closeResults()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition font-bold text-sm">
+                ✕
+            </button>
+    
             <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                 🏆
             </div>
