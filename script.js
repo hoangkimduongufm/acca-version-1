@@ -1,11 +1,11 @@
 let currentSection = 'ALL'; // Trạng thái section đang chọn
 let baseQuizData = [];      // Danh sách gốc sau khi lọc theo section (giữ nguyên thứ tự)
-let currentQuizData = [];   // Danh sách đang làm (có thể giữ nguyên hoặc random)
+let currentQuizData = [];   // Danh sách đang làm (có thể giữ nguyên hoặc random câu hỏi + đáp án)
 let currentIndex = 0;
 let userAnswers = [];
 let correctCount = 0;
 
-// Thuật toán Fisher-Yates shuffle
+// Thuật toán Fisher-Yates shuffle chuẩn xác
 function shuffleArray(array) {
     const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -15,22 +15,47 @@ function shuffleArray(array) {
     return arr;
 }
 
+// Hàm chuẩn bị dữ liệu: Xáo trộn câu hỏi VÀ Xáo trộn các lựa chọn (options) của từng câu
+function prepareQuizData(dataToShuffle) {
+    // Deep copy để đảm bảo dữ liệu gốc hoàn toàn an toàn
+    const clonedData = JSON.parse(JSON.stringify(dataToShuffle));
+    const shuffledQuestions = shuffleArray(clonedData);
+
+    return shuffledQuestions.map(q => {
+        if (q.options && q.options.length > 0) {
+            // Ghép nội dung đáp án với trạng thái đúng/sai của nó
+            let indexedOptions = q.options.map((opt, idx) => ({
+                text: opt,
+                isCorrect: idx === q.correct
+            }));
+
+            // Xáo trộn vị trí các lựa chọn A, B, C, D
+            indexedOptions = shuffleArray(indexedOptions);
+
+            // Gán lại mảng options đã xáo trộn và cập nhật lại chỉ số correct mới
+            q.options = indexedOptions.map(item => item.text);
+            q.correct = indexedOptions.findIndex(item => item.isCorrect);
+        }
+        return q;
+    });
+}
+
 // Khởi tạo quiz khi load trang hoặc khi đổi section (GIỮ NGUYÊN THỨ TỰ GỐC)
 function initQuiz() {
     if (typeof quizData === 'undefined') {
-        console.error("Không tìm thấy biến quizData.");
+        console.error("Không tìm thấy biến quizData. Vui lòng kiểm tra lại file question.js");
         return;
     }
 
     // Lọc theo section
     if (currentSection === 'ALL') {
-        baseQuizData = [...quizData];
+        baseQuizData = JSON.parse(JSON.stringify(quizData));
     } else {
-        baseQuizData = quizData.filter(q => q.section === currentSection);
+        baseQuizData = JSON.parse(JSON.stringify(quizData.filter(q => q.section === currentSection)));
     }
 
-    // Mặc định load lần đầu hoặc F5 sẽ giữ nguyên thứ tự gốc, không random
-    currentQuizData = [...baseQuizData];
+    // Mặc định load lần đầu hoặc F5 sẽ giữ nguyên thứ tự gốc
+    currentQuizData = JSON.parse(JSON.stringify(baseQuizData));
     resetStateAndRender();
 }
 
@@ -78,13 +103,13 @@ function resetStateAndRender() {
 
 // 1. Làm lại theo thứ tự gốc trong section hiện tại
 function resetQuiz() {
-    currentQuizData = [...baseQuizData];
+    currentQuizData = JSON.parse(JSON.stringify(baseQuizData));
     resetStateAndRender();
 }
 
-// 2. Làm lại với câu hỏi xáo trộn ngẫu nhiên (CHỈ CHẠY KHI BẤM NÚT RANDOM)
+// 2. Làm lại với câu hỏi xáo trộn + XÁO TRỘN CẢ ĐÁP ÁN (CHỈ CHẠY KHI BẤM NÚT RANDOM)
 function resetAndShuffleQuiz() {
-    currentQuizData = shuffleArray(baseQuizData);
+    currentQuizData = prepareQuizData(baseQuizData);
     resetStateAndRender();
 }
 
@@ -201,8 +226,7 @@ function renderQuestion() {
                 <div class="font-semibold mb-1 flex items-center gap-2">
                     <span>${isCorrect ? '🎉 Great choice, you got it right!' : '💡 The correct answer is: ' + optionLetters[q.correct] + '. ' + q.options[q.correct]}</span>
                 </div>
-                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">📝 Detailed breakdown:
-                </strong> ${q.explanation}</p>
+                <p class="text-sm mt-2 leading-relaxed opacity-90 explanation"><strong class="font-medium">📝 Detailed breakdown: </strong> ${q.explanation}</p>
             </div>
         `;
     }
