@@ -15,7 +15,7 @@ function shuffleArray(array) {
     return arr;
 }
 
-// Hàm chuẩn bị dữ liệu: Xáo trộn câu hỏi VÀ Xáo trộn các lựa chọn (options) của từng câu
+// Hàm chuẩn bị dữ liệu: xáo trộn câu hỏi và chỉ xáo trộn đáp án sai
 function prepareQuizData(dataToShuffle) {
     // Deep copy để đảm bảo dữ liệu gốc hoàn toàn an toàn
     const clonedData = JSON.parse(JSON.stringify(dataToShuffle));
@@ -23,18 +23,15 @@ function prepareQuizData(dataToShuffle) {
 
     return shuffledQuestions.map(q => {
         if (q.options && q.options.length > 0) {
-            // Ghép nội dung đáp án với trạng thái đúng/sai của nó
-            let indexedOptions = q.options.map((opt, idx) => ({
-                text: opt,
-                isCorrect: idx === q.correct
-            }));
-
-            // Xáo trộn vị trí các lựa chọn A, B, C, D
-            indexedOptions = shuffleArray(indexedOptions);
-
-            // Gán lại mảng options đã xáo trộn và cập nhật lại chỉ số correct mới
-            q.options = indexedOptions.map(item => item.text);
-            q.correct = indexedOptions.findIndex(item => item.isCorrect);
+            // Giữ đáp án đúng ở nguyên vị trí, chỉ xáo trộn các đáp án sai
+            const correctOption = q.options[q.correct];
+            const wrongOptions = shuffleArray(
+                q.options.filter((_, idx) => idx !== q.correct)
+            );
+            let wrongIndex = 0;
+            q.options = q.options.map((_, idx) =>
+                idx === q.correct ? correctOption : wrongOptions[wrongIndex++]
+            );
         }
         return q;
     });
@@ -107,7 +104,7 @@ function resetQuiz() {
     resetStateAndRender();
 }
 
-// 2. Làm lại với câu hỏi xáo trộn + XÁO TRỘN CẢ ĐÁP ÁN (CHỈ CHẠY KHI BẤM NÚT RANDOM)
+// 2. Làm lại với câu hỏi được xáo trộn và đáp án sai được xáo trộn
 function resetAndShuffleQuiz() {
     currentQuizData = prepareQuizData(baseQuizData);
     resetStateAndRender();
@@ -290,3 +287,4 @@ function closeResults() {
 window.onload = function() {
     initQuiz();
 };
+
