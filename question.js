@@ -3523,13 +3523,13 @@ const quizData = [
         correct: 0,
         explanation: "Tax on sales of shares: 200,000 shares * 60% * VND30,000 per share * 0.1% = VND3.6 million\nTax on dividends: 80,000 remaining * VND8,000 per share * 5% = VND32 million\nTotal PIT = 32 + 3.6 = VND35.6 million\nTutorial notes:\n– Non-residents are subject to 0.1% on sale proceeds of securities (despite the loss).\n– Non-tax residents are subject to tax at 5% on dividends."
     },
-    {
+        {
         id: 228,
         section: "Part E",
         type: "standard",
         question: "Ms Trang is a Vietnamese citizen who earned gross employment income of VND40 million per month. She gave birth to her first child and registered them as a dependent in January 2025.\n\nShe subsequently took six months maternity leave from January to June 2025.\n\nDuring the maternity period, her employer paid 80% of her monthly salary to her, in addition to the official maternity payment she received from the Social Insurance Fund.\n\n<b>What is Ms Trang's annual personal income tax (PIT) liability (rounded to one decimal in the monthly PIT calculation ONLY) in the year 2025?</b>",
         options: [
-            "VND23.7 million",
+            "VND24.6 million",
             "VND14.4 million",
             "VND0",
             "VND19.23 million"
