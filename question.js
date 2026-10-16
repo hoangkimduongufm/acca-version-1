@@ -4057,7 +4057,7 @@ const quizData = [
         id: 265,
         section: "Part E",
         type: "standard",
-        question: "Mr. Minh Tu, a Vietnamese citizen, was assigned to work in the Singapore representative office of VNP Co, a company headquartered in Vietnam. In 2025, he received a monthly gross income of USD 20,000, plus an annual tuition fee of USD 40,000 for his ten-year-old son, for studying at a school in Singapore. The tuition fee was paid directly by the representative office of VNP Co to the school.\n\n<b>What is the amount (in VND million, rounded to two decimals) of Mr. Minh Tu's Vietnamese monthly personal income tax (PIT) liability in the year 2025 (before deducting any foreign tax credit)?</b>\n\nYou should assume Mr. Nhat Minh is not subject to any compulsory insurance in Vietnam.",
+        question: "Mr. Minh Tu, a Vietnamese citizen, was assigned to work in the Singapore representative office of VNP Co, a company headquartered in Vietnam. In 2025, he received a monthly gross income of USD 20,000, plus an annual tuition fee of USD 40,000 for his ten-year-old son, for studying at a school in Singapore. The tuition fee was paid directly by the representative office of VNP Co to the school.\n\n<b>What is the amount (in VND million, rounded to two decimals) of Mr. Minh Tu's Vietnamese monthly personal income tax (PIT) liability in the year 2025 (before deducting any foreign tax credit)?</b>\n\nYou should assume Mr. Minh Tu is not subject to any compulsory insurance in Vietnam.",
         options: [
             "VND 184.10 million",
             "VND 154.65 million",
