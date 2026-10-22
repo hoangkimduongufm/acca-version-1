@@ -4,31 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACCA-Version-1</title>
+    <!-- Font Awesome Kit -->
+    <script src="https://kit.fontawesome.com/c35fb71a8e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
-    <script src="question.js" defer></script>
+    <script src="questions.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen p-2 sm:p-4 md:p-8">
     <div id="app" class="max-w-4xl mx-auto bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl overflow-hidden border border-slate-100 my-2 sm:my-6">
         
-        <!-- Header Section -->
-        <div class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-4 sm:p-6 md:p-8">
-            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">DISCLAIMER FOR F6 PRACTICE QUESTIONS</h1>
-            <p class="text-indigo-100 mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base leading-relaxed">This F6 practice questions has been created by SAPP to assist candidates preparing for the F6 – Taxation in Vietnam exam.</p>
-            <div id="quiz-meta" class="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-4 mt-3 sm:mt-4 text-[11px] sm:text-xs md:text-sm font-medium bg-indigo-700/50 p-2 sm:p-3 rounded-xl backdrop-blur-sm text-center sm:text-left">
-                <span id="meta-total">Total: 0</span>
-                <span id="meta-answered">Completed: 0/0</span>
-                <span id="meta-score">Score: 0</span>
+        <!-- Header Section / Hero Section -->
+        <section class="max-w-4xl mx-auto my-6 px-4">
+            <div class="bg-slate-900 text-white rounded-2xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+                
+                <!-- Hàng trên: Tiêu đề và Nút Lịch sử -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Question Bank · ACCA F6 (Taxation)</span>
+                        <h1 class="text-2xl md:text-3xl font-extrabold mt-1 text-white">Vietnam Taxation</h1>
+                        <p class="text-slate-300 text-sm md:text-base mt-1">
+                            Comprehensive review with 273 questions, ranging from easy to difficult.
+                        </p>
+                    </div>
+                    
+                    <!-- Nút bấm mở Lịch sử ôn tập -->
+                    <button id="btn-toggle-wrong-history" class="bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-medium text-sm px-4 py-2.5 rounded-xl border border-slate-700 transition flex items-center gap-2 shadow-sm shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>History</span>
+                    </button>
+                </div>
+
+                <!-- Thống kê nhanh -->
+                <div id="quiz-meta" class="flex flex-wrap gap-3 pt-4 border-t border-slate-800">
+                    <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm font-medium text-slate-300">
+                        <span id="meta-total">Total: 0</span>
+                    </div>
+                    <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm font-medium text-slate-300">
+                        <span id="meta-answered">Answered: 0/0</span>
+                    </div>
+                    <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-2 text-sm font-medium text-slate-300">
+                        <span id="meta-score">Correct: 0</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- POPUP MODAL: LỊCH SỬ ÔN TẬP CÂU SAI -->
+        <div id="wrong-history-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-3 sm:p-4">
+            <div class="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[90vh] sm:h-[85vh] max-h-[85vh] animate-scaleIn">
+                
+                <!-- 1. Header có nút X đóng -->
+                <div class="px-4 sm:px-6 py-4 bg-slate-900 text-white flex justify-between items-center shrink-0">
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                            <span>📋 Review Revision History</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 mt-0.5">Track and review incorrect questions categorized by error frequency.</p>
+                    </div>
+                    <button id="btn-close-wrong-history" class="text-slate-400 hover:text-white font-bold p-1 rounded-lg text-xl transition">
+                        ✕
+                    </button>
+                </div>
+
+                <!-- 2. Tabs -->
+                <div class="flex border-b border-slate-200 bg-slate-50 px-4 sm:px-6 pt-3 gap-2 shrink-0 overflow-x-auto">
+                    <button onclick="switchWrongTab('wrong1')" id="tab-wrong1" class="px-4 py-2 text-sm font-semibold rounded-t-xl transition bg-white text-indigo-600 border-t border-x border-slate-200 shadow-sm shrink-0">
+                        Wrong 1
+                    </button>
+                    <button onclick="switchWrongTab('wrong2')" id="tab-wrong2" class="px-4 py-2 text-sm font-semibold rounded-t-xl transition text-slate-600 hover:text-slate-900 hover:bg-slate-100 shrink-0">
+                        Wrong 2
+                    </button>
+                    <button onclick="switchWrongTab('wrongup3')" id="tab-wrongup3" class="px-4 py-2 text-sm font-semibold rounded-t-xl transition text-slate-600 hover:text-slate-900 hover:bg-slate-100 shrink-0">
+                        Wrong up 3
+                    </button>
+                </div>
+
+                <!-- 3. Bảng dữ liệu -->
+                <div class="p-4 sm:p-6 overflow-y-auto flex-1 custom-scrollbar">
+                    <div class="overflow-x-auto border border-slate-200 rounded-xl">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead class="bg-slate-100 text-slate-700 uppercase text-[11px] font-semibold tracking-wider sticky top-0 z-10 shadow-sm">
+                                <tr>
+                                    <th class="p-3 border-b border-slate-200 w-36 text-center bg-slate-100">Status</th>
+                                    <th class="p-3 border-b border-slate-200 w-32 bg-slate-100">Section</th>
+                                    <th class="p-3 border-b border-slate-200 bg-slate-100">Question</th>                            
+                                    <th class="p-3 border-b border-slate-200 w-24 text-right bg-slate-100">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wrong-questions-table-body" class="divide-y divide-slate-100 text-slate-700 bg-white">
+                                <!-- Render động -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Đã xóa footer chứa nút Close ở đây luôn -->
+            </div>
+        </div>              
+
+        <!-- POPUP MODAL: CHI TIẾT CÂU HỎI KHI BẤM VIEW -->
+        <div id="question-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+            <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] animate-scaleIn">
+                
+                <!-- Header có nút X -->
+                <div class="px-6 py-4 bg-slate-900 text-white flex justify-between items-center shrink-0">
+                    <h3 id="detail-modal-title" class="text-base font-bold">Question Detail</h3>
+                    <button onclick="closeQuestionDetailModal()" class="text-slate-400 hover:text-white font-bold p-1 rounded-lg text-xl transition">
+                        ✕
+                    </button>
+                </div>
+
+                <!-- Body nội dung -->
+                <div id="detail-modal-content" class="p-6 overflow-y-auto flex-1 space-y-4 text-slate-700 text-sm md:text-base">
+                    <!-- Render động -->
+                </div>
+
+                <!-- Đã xóa footer chứa nút Close theo đúng yêu cầu -->
             </div>
         </div>
 
         <!-- Toolbar / Navigation bar -->
         <div class="bg-slate-100 p-3 sm:p-4 border-b border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <div class="grid grid-cols-2 sm:flex sm:items-center gap-2">
-                <!-- Bộ lọc Section -->
                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                     <label for="section-select" class="text-xs sm:text-sm font-semibold text-slate-600">Section:</label>
                     <select id="section-select" onchange="changeSection(this.value)" class="bg-white border border-slate-300 text-slate-700 text-xs sm:text-sm rounded-lg px-2 sm:px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-auto">
@@ -42,16 +145,13 @@
                     </select>
                 </div>
 
-                <!-- Nhảy câu -->
                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                     <label for="jump-select" class="text-xs sm:text-sm font-semibold text-slate-600">To:</label>
                     <select id="jump-select" onchange="jumpToQuestion(this.value)" class="bg-white border border-slate-300 text-slate-700 text-xs sm:text-sm rounded-lg px-2 sm:px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-auto">
-                        <!-- Options populated via JS -->
                     </select>
                 </div>
             </div>
 
-            <!-- Các nút chức năng -->
             <div class="grid grid-cols-1 sm:flex items-center gap-2">
                 <button onclick="submitQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-xl transition shadow-sm text-center">
                     View Results
@@ -69,7 +169,6 @@
 
         <!-- Quiz Main Content Area -->
         <div class="p-4 sm:p-6 md:p-8 min-h-[350px] sm:min-h-[400px]" id="question-container">
-            <!-- Dynamic Question rendered here -->
         </div>
 
         <!-- Footer Pagination Controls -->
@@ -87,7 +186,6 @@
     <!-- Results Modal / View -->
     <div id="results-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-5 sm:p-6 md:p-8 text-center relative animate-scaleIn">
-            <!-- Nút Close (X) góc trên bên phải -->
             <button onclick="closeResults()" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition font-bold text-sm">
                 ✕
             </button>
